@@ -415,12 +415,22 @@ with tab_regressions:
             df,
             x="Daily_Usage_Hours",
             y="Study_Hours",
-            trendline="ols",
-            trendline_color_override="#ef4444",
             color="Platform",
             opacity=0.45,
             template="plotly_dark",
         )
+        if len(df) > 1:
+            m4, b4 = np.polyfit(df["Daily_Usage_Hours"], df["Study_Hours"], 1)
+            x4 = np.linspace(df["Daily_Usage_Hours"].min(), df["Daily_Usage_Hours"].max(), 50)
+            fig4.add_trace(
+                go.Scatter(
+                    x=x4,
+                    y=m4 * x4 + b4,
+                    mode="lines",
+                    name=f"OLS Trendline (r = {r_study:.2f})",
+                    line=dict(color="#ef4444", width=3),
+                )
+            )
         fig4.update_layout(
             plot_bgcolor="rgba(0,0,0,0)",
             paper_bgcolor="rgba(0,0,0,0)",
@@ -438,12 +448,22 @@ with tab_regressions:
             df,
             x="Daily_Usage_Hours",
             y="Sleep_Hours",
-            trendline="ols",
-            trendline_color_override="#ec4899",
             color="Platform",
             opacity=0.45,
             template="plotly_dark",
         )
+        if len(df) > 1:
+            m5, b5 = np.polyfit(df["Daily_Usage_Hours"], df["Sleep_Hours"], 1)
+            x5 = np.linspace(df["Daily_Usage_Hours"].min(), df["Daily_Usage_Hours"].max(), 50)
+            fig5.add_trace(
+                go.Scatter(
+                    x=x5,
+                    y=m5 * x5 + b5,
+                    mode="lines",
+                    name=f"OLS Trendline (r = {r_sleep:.2f})",
+                    line=dict(color="#ec4899", width=3),
+                )
+            )
         fig5.update_layout(
             plot_bgcolor="rgba(0,0,0,0)",
             paper_bgcolor="rgba(0,0,0,0)",
@@ -461,12 +481,22 @@ with tab_regressions:
         df,
         x="Daily_Usage_Hours",
         y="Academic_Performance",
-        trendline="ols",
-        trendline_color_override="#f59e0b",
         color="Gender",
         opacity=0.45,
         template="plotly_dark",
     )
+    if len(df) > 1:
+        m6, b6 = np.polyfit(df["Daily_Usage_Hours"], df["Academic_Performance"], 1)
+        x6 = np.linspace(df["Daily_Usage_Hours"].min(), df["Daily_Usage_Hours"].max(), 50)
+        fig6.add_trace(
+            go.Scatter(
+                x=x6,
+                y=m6 * x6 + b6,
+                mode="lines",
+                name=f"OLS Trendline (r = {r_perf:.2f})",
+                line=dict(color="#f59e0b", width=3),
+            )
+        )
     fig6.update_layout(
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
