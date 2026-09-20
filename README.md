@@ -92,7 +92,19 @@ pip install -r requirements.txt
 ## 5. Usage Guide
 
 ### Unified Execution (`run.py`)
-The pipeline is operated through the root CLI orchestrator:
+### Interactive Analytical Dashboard (Streamlit UI)
+To launch the full interactive web application without default branding or loading emojis:
+
+```bash
+streamlit run app.py
+```
+* **Real-time Dual Mode Switching:** Seamlessly toggle between Synthetic Cohort ($N=1,000$, seed=42) and Empirical Survey ($N=5,000$).
+* **Dynamic Interactive Charts:** Hover inspection, zoom, and direct value tooltips for all figures.
+* **Interactive Live Filtering:** Filter by platform, gender, and age cohort in real time.
+* **'What-If' Academic Simulator:** Adjust daily screen time, study hours, and sleep duration to project academic performance with live gauge indicators.
+
+### Command-Line Execution (`run.py`)
+You can also run the pipeline headlessly via the terminal:
 
 ```bash
 # Mode 1: Run with Synthetic Data (Default, N=1,000, seed=42)
