@@ -116,14 +116,17 @@ def ingest_real_data(
     """
     raw_path = Path(input_path)
     if not raw_path.exists():
-        candidate_paths = [
-            Path("data/Student Social Media And Mental Health Impact.csv"),
-            Path("dataset/Student Social Media And Mental Health Impact.csv"),
-        ]
-        for candidate in candidate_paths:
-            if candidate.exists():
-                raw_path = candidate
-                break
+        if raw_path.name == "Student Social Media And Mental Health Impact.csv":
+            candidate_paths = [
+                Path("data/Student Social Media And Mental Health Impact.csv"),
+                Path("dataset/Student Social Media And Mental Health Impact.csv"),
+            ]
+            for candidate in candidate_paths:
+                if candidate.exists():
+                    raw_path = candidate
+                    break
+            else:
+                raise FileNotFoundError(f"Empirical dataset not found at: {Path(input_path).resolve()}")
         else:
             raise FileNotFoundError(f"Empirical dataset not found at: {Path(input_path).resolve()}")
 

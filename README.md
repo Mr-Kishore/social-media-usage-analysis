@@ -141,6 +141,21 @@ python src/generate_data.py --mode real
 python src/analyze.py --data data/social_media_usage_dataset.csv --charts charts
 ```
 
+### Automated Testing Suite
+Run the 15-point unit and integration test suite via `pytest`:
+
+```bash
+pytest tests/ -v
+```
+
+### Continuous Integration (CI/CD Pipeline)
+An enterprise GitHub Actions pipeline is configured in [`.github/workflows/ci.yml`](.github/workflows/ci.yml) to automatically validate every push and pull request to `main`:
+* **Matrix Testing:** Executes across **Python 3.10, 3.11, and 3.12** on `ubuntu-latest`.
+* **Static Code Analysis:** Python compilation and syntax verification.
+* **Unit & Integration Tests:** Executes the full `pytest` suite testing data generation, boundary constraints, statistical validations, and EDA engines.
+* **Pipeline Verification:** Executes both `--data synthetic` and `--data real` end-to-end runs.
+* **Artifact Validation:** Verifies all 6 required 300 DPI analytical charts are generated and uploads them as build artifacts.
+
 ---
 
 ## 6. Generated Visual Artifacts
